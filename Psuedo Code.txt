@@ -1,0 +1,58 @@
+Overview:
+    Landing Page:
+        1) asks to pick a team
+        2) team is selected from a drop down
+        3) header with Page name
+        4) NBA Logo for main image (centered on page)
+        5) user is routed to stas view page when team is selected
+
+            6) *optional* background image for each team 
+    
+
+    Stats View Page
+
+        1) Display team name top centered
+        2) main stats section Majority of the page (75+% of total page height and width, left aligned, vertically aligned center)
+        3) Quick Reference Guide (25% of total page width, height to match main stats section)
+            a) show top 5 all time stats leaders for points, rebounds, assists, steals, blocks, # of championships per team
+            b) *optional* show top 5 all time stats across entier league for points, rebounds, assists, steals blocks, and championships (team)
+                b1) test API to see how league data is pulled
+
+Landing page coding
+    1) create an array with all NBA teams use full names (Utah Jazz, Chicago Bulls, Charlotte Hornets, etc.)
+        a) *optional* add team logo
+    2) test to see how API handles legacy names (New Oleans Jazz, Kansas City Kings, Seattle Sonics, Etc.)
+    3) on click event. once team is selected, the API call is made and the page advances to the stas view page
+
+Stats View Page:
+
+    1) link in top left to return to home page (NBA logo)
+    2) *drop down to change teams top left near home button
+
+    Main Stats container:
+    2) API calls for main section
+        stats (calls) to include
+            Stat Board:
+            1) points (avg/game)
+            2) assists (avg/game)
+            3) steals (avg/game)
+            4) offensive rebounds (avg/game) 
+            5) defensive rebounds (avg/game)
+            6) total rebounds (avg/game)
+            7) blocks(avg/game)
+    
+    *3) team stats (sub-container)
+        *1) record (w/L) plus W/L%
+        *2) offensive +/-
+        *3) defensive +/-
+        *4) big five stats (team average)
+        *5) conference standing
+        *6) last game score
+        *7) next game oponnent, date/time
+
+    Quick Reference Guide:
+    1) API Calls for top five in big five (individual season leaders)
+    2) all time leaders in big five plus most championships (by team)
+    3) *current division standing
+    
+

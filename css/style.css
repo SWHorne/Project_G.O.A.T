@@ -1,3 +1,10 @@
 body {
-    background-color: burlywood;
+    background-color: white;
 };
+
+.quickreferenceguide {
+    font-size: 50;
+}
+.averagepointsforseason {
+    font-size: 20;
+}

@@ -16,11 +16,25 @@ $(document).ready(function() {
                 let teamID=teamIDs[i];
                 getTeam(teamID);
             }
+
+// Start of code for Home Button 
+
+            function homeLink(homeBtn) {
+                var homeBtn = $('#homeButton').click(function() {
+                    window.location.replace('../index.html');
+                });
+            }
+            homeLink();
+            
+// end of code for home button
+        
+
         });
 
     
-    
-    
+  
+
+ 
     
     
     

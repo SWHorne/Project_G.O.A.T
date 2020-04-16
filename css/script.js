@@ -7,6 +7,9 @@ $(document).ready(function() {
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
+                    // let option = $('<option>');
+                    // option.text(response.full_name);
+                    // $('#teamselect').append(option);
                     console.log(queryURL);
                 }).catch(function (error) {
                     console.log(error);
@@ -15,22 +18,60 @@ $(document).ready(function() {
             for (let i = 0; i < teamIDs.length; i++) {
                 let teamID=teamIDs[i];
                 getTeam(teamID);
-            }
+            };
 
-// Start of code for Home Button 
+        
+            let queryURL = 'https://www.balldontlie.io/api/v1/teams/';
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                for(let i=0; i<response.data.length; i++)
+                {let team=response.data[i];
+                    console.log(team.full_name);
+                    let option = $('<option>');
+                    option.text(team.full_name);
+                    $('#teamselect').append(option);
+                };
+                // console.log(response.full_name);
+                // let option = $('<option>');
+                // option.text(response.full_name);
+                // $('#teamselect').append(option);
+                console.log(queryURL);
+            }).catch(function (error) {
+                console.log(error);
+            });
 
-            function homeLink(homeBtn) {
-                var homeBtn = $('#homeButton').click(function() {
-                    window.location.replace('../index.html');
-                });
-            }
-            homeLink();
-            
-// end of code for home button
+
+            function sportsDB(){
+                let teamURL = 'https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4387';
+                $.ajax({
+                    url: teamURL,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response)
+                    for(let i=0; i<response.teams.length; i++){
+                        let sdTeams=response.teams[i];
+                    console.log(response.teams[i].strTeamBadge);
+                    console.log(response.teams[i]);
+                    console.log(sdTeams.strTeamBadge);
+                    console.log(sdTeams.strTeam);
+   
+                    $.getJSON(teamURL, 
+                        function(data) {
+                            var $img = $("<img>").attr('src', response.teams[i].strTeamBadge);
+                        $('.teamBadge').empty().append($img);
+                    });
+                   
+                    
+                    
+                }
+            })
+        }
+        sportsDB();
         
 
         });
-
     
   
 

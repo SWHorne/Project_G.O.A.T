@@ -1,28 +1,11 @@
 body {
     background-color: white;
-};
-
-.statsPage {
-    background-color: #ffffff;
-    text-align: center;
-    margin: 15px;
-    border: 0px;
-    padding: 0px;
 }
 
-#homeButton {
-    text-align: left;
+.nbaLogo {
+    width: 20%;
 }
 
-.navBar {
-margin-top: -10px;
-margin-right: 0px;
-margin-bottom: 0px;
-margin-left: 0px;
-padding: 0px;
-
-}
-
-li {
-    display: inline;
+.teamLogo {
+    width: 40%;
 }

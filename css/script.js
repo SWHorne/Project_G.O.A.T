@@ -1,89 +1,53 @@
-$(document).ready(function() {
-    let teamIDs = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
-            function getTeam(teamID) {
-                let queryURL = 'https://www.balldontlie.io/api/v1/teams/' + teamID;
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-                    console.log(response);
-                    // let option = $('<option>');
-                    // option.text(response.full_name);
-                    // $('#teamselect').append(option);
-                    console.log(queryURL);
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            }
-            for (let i = 0; i < teamIDs.length; i++) {
-                let teamID=teamIDs[i];
-                getTeam(teamID);
-            };
+$(document).ready(function () {
+  let queryURL = "https://www.balldontlie.io/api/v1/teams/";
+  let teamURL =
+    "https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4387";
+  Promise.all([
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }),
+    $.ajax({
+      url: teamURL,
+      method: "GET",
+    }),
+  ]).then(function (responses) {
+    let bdlTeams = responses[0].data;
+    let sportsDBTeams = responses[1].teams;
+    let teamStatsMap = {};
+    for (let i = 0; i < sportsDBTeams.length; i++) {
+      let sdTeam = sportsDBTeams[i];
+      teamStatsMap[sdTeam.strTeamShort] = {
+        teamBadge: sdTeam.strTeamBadge,
+        city: sdTeam.strStadiumLocation,
+        year: sdTeam.intFormedYear,
+        arena: sdTeam.strStadium,
+        capacity: sdTeam.intStadiumCapacity,
+      };
+    }
 
-        
-            let queryURL = 'https://www.balldontlie.io/api/v1/teams/';
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                for(let i=0; i<response.data.length; i++)
-                {let team=response.data[i];
-                    console.log(team.full_name);
-                    let option = $('<option>');
-                    option.text(team.full_name);
-                    $('#teamselect').append(option);
-                };
-                // console.log(response.full_name);
-                // let option = $('<option>');
-                // option.text(response.full_name);
-                // $('#teamselect').append(option);
-                console.log(queryURL);
-            }).catch(function (error) {
-                console.log(error);
-            });
+    function showStats(bdlTeamName) {
+      let $img = $("<img>").attr("src", teamStatsMap[bdlTeamName].teamBadge).addClass('teamLogo');
+      $(".logo").empty().append($img);
+      let year = $(".year").empty().append(teamStatsMap[bdlTeamName].intFormedYear);
+      let city = $(".city").empty().append(teamStatsMap[bdlTeamName].city);
+      let arena = $(".arena").empty().append(teamStatsMap[bdlTeamName].strStadium);
+      let capacity = $(".arena").empty().append(teamStatsMap[bdlTeamName].intStadiumCapacity);
+    }
 
+    console.log(teamStatsMap);
 
-            function sportsDB(){
-                let teamURL = 'https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4387';
-                $.ajax({
-                    url: teamURL,
-                    method: "GET"
-                }).then(function (response) {
-                    console.log(response)
-                    for(let i=0; i<response.teams.length; i++){
-                        let sdTeams=response.teams[i];
-                    console.log(response.teams[i].strTeamBadge);
-                    console.log(response.teams[i]);
-                    console.log(sdTeams.strTeamBadge);
-                    console.log(sdTeams.strTeam);
-   
-                    $.getJSON(teamURL, 
-                        function(data) {
-                            var $img = $("<img>").attr('src', response.teams[i].strTeamBadge);
-                        $('.teamBadge').empty().append($img);
-                    });
-                   
-                    
-                    
-                }
-            })
-        }
-        sportsDB();
-        
-
-        });
-    
-  
-
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    for (let i = 0; i < bdlTeams.length; i++) {
+      let team = bdlTeams[i];
+      let option = $("<option>");
+      option.text(team.full_name);
+      option.attr("value", team.abbreviation);
+      $("#teamselect").append(option);
+    }
+    $("#teamselect").on("change", function () {
+      let teamName = this.value;
+      localStorage.setItem("teamName", teamName);
+      showStats(teamName);
+    });
+  });
+});

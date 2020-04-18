@@ -7,28 +7,54 @@ $(document).ready(function() {
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
+                    // let option = $('<option>');
+                    // option.text(response.full_name);
+                    // $('#teamselect').append(option);
+
                     console.log(queryURL);
                 }).catch(function (error) {
                     console.log(error);
+                    
                 });
             }
             for (let i = 0; i < teamIDs.length; i++) {
                 let teamID=teamIDs[i];
                 getTeam(teamID);
-            }
-        });
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            };
+        //     function sportsDB(){
+        //     let teamURL = 'https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4387';
+        //     $.ajax({
+        //         url: teamURL,
+        //         method: "GET"
+        //     }).then(function (response) {
+        //         for(let i=0; i<response.teams.length; i++){
+        //         console.log(response.teams[i].strTeamLogo);
+        //         sportsDB();
+        //     }
+        //     })
+        // };
+            
+            let queryURL = 'https://www.balldontlie.io/api/v1/teams/';
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                for(let i=0; i<response.data.length; i++)
+                {let team=response.data[i];
+                    console.log(team.full_name);
+                    let option = $('<option>');
+                    option.text(team.full_name);
+                    $('#teamselect').append(option);
+                };
+                // console.log(response.full_name);
+                // let option = $('<option>');
+                // option.text(response.full_name);
+                // $('#teamselect').append(option);
+
+                console.log(queryURL);
+            }).catch(function (error) {
+                console.log(error);
+                
+            });
+        });

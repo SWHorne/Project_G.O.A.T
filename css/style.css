@@ -39,10 +39,8 @@ main {
     margin: 30px;
     padding: 20px;
 }
-
-
-    @media screen and (max-width:1250px){
+@media screen and (max-width:1250px){
         .container ul li{
             width:40%;
             margin-left: 40px;
-        }}
+  }}

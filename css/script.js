@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  
+  let teamStatsMap = {};
   let queryURL = "https://www.balldontlie.io/api/v1/teams/";
   let teamURL =
     "https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4387";
@@ -14,7 +16,7 @@ $(document).ready(function () {
   ]).then(function (responses) {
     let bdlTeams = responses[0].data;
     let sportsDBTeams = responses[1].teams;
-    let teamStatsMap = {};
+    
     for (let i = 0; i < sportsDBTeams.length; i++) {
       let sdTeam = sportsDBTeams[i];
       teamStatsMap[sdTeam.strTeamShort] = {
@@ -29,10 +31,10 @@ $(document).ready(function () {
     function showStats(bdlTeamName) {
       let $img = $("<img>").attr("src", teamStatsMap[bdlTeamName].teamBadge).addClass('teamLogo');
       $(".logo").empty().append($img);
-      let year = $(".year").empty().append(teamStatsMap[bdlTeamName].intFormedYear);
-      let city = $(".city").empty().append(teamStatsMap[bdlTeamName].city);
-      let arena = $(".arena").empty().append(teamStatsMap[bdlTeamName].strStadium);
-      let capacity = $(".arena").empty().append(teamStatsMap[bdlTeamName].intStadiumCapacity);
+      $(".year").empty().append(teamStatsMap[bdlTeamName].year);
+      $(".city").empty().append(teamStatsMap[bdlTeamName].city);
+      $(".arena").empty().append(teamStatsMap[bdlTeamName].arena);
+      $(".capacity").empty().append(teamStatsMap[bdlTeamName].capacity);
     }
 
     console.log(teamStatsMap);

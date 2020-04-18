@@ -1,6 +1,24 @@
 body {
-    background-color: white;
+    background-color: white ; 
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    }
+  
+.banner {
+    align-items: center;
+    color: #ffffff;
 }
+
+.brand-logo {
+    align-items: left;
+    width: 1%;
+    margin-left: 15px;
+}
+
+/* .btn {
+    color: none;
+} */
 
 .nbaLogo {
     width: 10%;
@@ -9,3 +27,44 @@ body {
 .teamLogo {
     width: 20%;
 }
+
+
+main {
+  flex: 1 0 auto;
+}
+
+.nav-wrapper {
+    background-color: black;
+    
+}
+
+.statstable {
+    width: 100%;
+    /* margin-top:px; */
+    margin-left: 5px;
+}
+
+.statscontainer {
+    text-align: middle  ;
+    background-color: lightseagreen;
+    width: 95%;
+
+}
+.container {
+    background-color: #ffffff;
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+}
+.card {
+
+    float: right;
+    background: white;
+    margin: 5px;
+    padding: 10px;
+}
+@media screen and (max-width:1250px){
+        .container ul li{
+            width:40%;
+            margin-left: 40px;
+  }}

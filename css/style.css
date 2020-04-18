@@ -1,3 +1,46 @@
 body {
-    background-color: burlywood;
-};
+  background-color: white ; 
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.nav-wrapper {
+    background-color: black;
+    
+}
+
+.statstable {
+    width: 78%;
+    margin-top:35px;
+    margin-left: 25px;
+}
+
+.statscontainer {
+    text-align: middle  ;
+    background-color: lightseagreen;
+    width: 80%;
+
+}
+.container {
+    background-color: grey;
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+}
+.card {
+
+    float: right;
+    background: white;
+    margin: 30px;
+    padding: 20px;
+}
+@media screen and (max-width:1250px){
+        .container ul li{
+            width:40%;
+            margin-left: 40px;
+  }}
